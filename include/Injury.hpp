@@ -5,7 +5,7 @@
 class Injury
 {
 public:
-    explicit Injury(bool new_injured = false, int new_days_to_recovery = 0);
+    Injury(bool new_injured = false, int new_days_to_recovery = 0);
     auto isInjured() -> bool;
     auto getDaysToRecovery() -> int;
     auto returnDate() -> std::string;
