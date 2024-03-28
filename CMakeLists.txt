@@ -8,6 +8,7 @@ set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 include_directories(${INCLUDE_DIR})
 
 add_executable(euro_simulation main.cpp
-        ${INCLUDE_DIR}/Injury.hpp
-        src/Injury.cpp ${INCLUDE_DIR}/Nationality.hpp
+        ${INCLUDE_DIR}/Injury.hpp src/Injury.cpp
+        ${INCLUDE_DIR}/Nationality.hpp
+        ${INCLUDE_DIR}/Player.hpp src/Player.cpp
 )
