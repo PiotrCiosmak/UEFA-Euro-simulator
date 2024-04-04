@@ -13,4 +13,5 @@ add_executable(euro_simulation main.cpp
         ${INCLUDE_DIR}/player/Player.hpp src/player/Player.cpp
         ${INCLUDE_DIR}/player/Goalkeeper.hpp src/player/Goalkeeper.cpp
         ${INCLUDE_DIR}/player/Defender.hpp src/player/Defender.cpp
+        ${INCLUDE_DIR}/player/Midfielder.hpp src/player/Midfielder.cpp
 )
