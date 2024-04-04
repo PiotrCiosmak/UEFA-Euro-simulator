@@ -16,6 +16,11 @@ auto Player::getName() const -> std::string
     return first_name + last_name;
 }
 
+auto Player::getOverall() const -> int
+{
+    return overall;
+}
+
 auto Player::getNumberOfGoals() const -> int
 {
     return goals;
