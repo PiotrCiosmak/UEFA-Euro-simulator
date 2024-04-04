@@ -9,9 +9,11 @@ public:
     FormationsManager(const FormationsManager &) = delete;
     FormationsManager(FormationsManager &&) = delete;
     static FormationsManager *instance();
-    void showAll() const;
+    [[nodiscard]] auto showAll() const -> size_t;
+    [[nodiscard]] auto getFormation(size_t index) -> std::string;
 
 private:
     FormationsManager();
+
     std::vector<std::string> formations;
 };
