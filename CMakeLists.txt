@@ -11,10 +11,7 @@ add_executable(euro_simulation main.cpp
         ${INCLUDE_DIR}/Injury.hpp src/Injury.cpp
         ${INCLUDE_DIR}/Nationality.hpp
         ${INCLUDE_DIR}/player/Player.hpp src/player/Player.cpp
-        ${INCLUDE_DIR}/player/Goalkeeper.hpp src/player/Goalkeeper.cpp
-        ${INCLUDE_DIR}/player/Defender.hpp src/player/Defender.cpp
-        ${INCLUDE_DIR}/player/Midfielder.hpp src/player/Midfielder.cpp
-        ${INCLUDE_DIR}/player/Attacker.hpp src/player/Attacker.cpp
+        ${INCLUDE_DIR}/player/Position.hpp
         ${INCLUDE_DIR}/MatchStage.hpp
         ${INCLUDE_DIR}/squad/FormationsManager.hpp src/squad/FormationsManager.cpp
         ${INCLUDE_DIR}/squad/Squad.hpp src/squad/Squad.cpp

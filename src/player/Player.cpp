@@ -3,11 +3,11 @@
 #include <utility>
 
 Player::Player(std::string new_first_name, std::string new_last_name, const int new_overall,
-               const Nationality new_nationality) : first_name{std::move(new_first_name)},
-                                                    last_name{std::move(new_last_name)},
-                                                    overall{new_overall},
-                                                    nationality{new_nationality},
-                                                    goals{0}, assists{0}
+               const Nationality new_nationality, const Position new_position) : first_name{std::move(new_first_name)},
+    last_name{std::move(new_last_name)},
+    overall{new_overall},
+    nationality{new_nationality},
+    goals{0}, assists{0}, position{new_position}
 {
 }
 
@@ -34,4 +34,9 @@ auto Player::getNationality() const -> Nationality
 auto Player::getInjury() const -> Injury
 {
     return injury;
+}
+
+auto Player::getPosition() const -> Position
+{
+    return position;
 }
