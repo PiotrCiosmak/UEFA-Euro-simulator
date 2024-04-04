@@ -2,28 +2,32 @@
 
 #include <chrono>
 
-Injury::Injury(bool new_injured, int new_days_to_recovery) : injured{new_injured},
-                                                             days_to_recovery{new_days_to_recovery}
-{}
+Injury::Injury(): injured{false}, days_to_recovery{0}
+{
+}
 
-auto Injury::isInjured() -> bool
+Injury::Injury(const bool new_injured, const int new_days_to_recovery) : injured{new_injured},
+                                                                         days_to_recovery{new_days_to_recovery}
+{
+}
+
+auto Injury::isInjured() const -> bool
 {
     return injured;
 }
 
-auto Injury::getDaysToRecovery() -> int
+auto Injury::getDaysToRecovery() const -> int
 {
     return days_to_recovery;
 }
 
-auto Injury::returnDate() -> std::string
+auto Injury::returnDate() const -> std::string
 {
-    auto today = std::chrono::system_clock::now();
-    auto recovery_date = today + std::chrono::hours(24 * days_to_recovery);
-    auto recovery_time = std::chrono::system_clock::to_time_t(recovery_date);
+    const auto today = std::chrono::system_clock::now();
+    const auto recovery_date = today + std::chrono::hours(24 * days_to_recovery);
+    const auto recovery_time = std::chrono::system_clock::to_time_t(recovery_date);
     std::stringstream ss;
     ss << std::ctime(&recovery_time);
-
     return ss.str();
 }
 

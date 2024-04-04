@@ -5,10 +5,11 @@
 class Injury
 {
 public:
-    Injury(bool new_injured = false, int new_days_to_recovery = 0);
-    auto isInjured() -> bool;
-    auto getDaysToRecovery() -> int;
-    auto returnDate() -> std::string;
+    Injury();
+    Injury(bool new_injured, int new_days_to_recovery);
+    [[nodiscard]] auto isInjured() const -> bool;
+    [[nodiscard]] auto getDaysToRecovery() const -> int;
+    [[nodiscard]] auto returnDate() const -> std::string;
     void setDaysToRecovery(int new_days_to_recovery);
 
 private:
