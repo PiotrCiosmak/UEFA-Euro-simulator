@@ -10,5 +10,6 @@ include_directories(${INCLUDE_DIR})
 add_executable(euro_simulation main.cpp
         ${INCLUDE_DIR}/Injury.hpp src/Injury.cpp
         ${INCLUDE_DIR}/Nationality.hpp
-        ${INCLUDE_DIR}/Player.hpp src/Player.cpp
+        ${INCLUDE_DIR}/player/Player.hpp src/player/Player.cpp
+        ${INCLUDE_DIR}/player/Goalkeeper.hpp src/player/Goalkeeper.cpp
 )
