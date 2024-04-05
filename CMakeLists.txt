@@ -15,4 +15,6 @@ add_executable(euro_simulation main.cpp
         ${INCLUDE_DIR}/MatchStage.hpp
         ${INCLUDE_DIR}/squad/FormationsManager.hpp src/squad/FormationsManager.cpp
         ${INCLUDE_DIR}/squad/Squad.hpp src/squad/Squad.cpp
+        ${INCLUDE_DIR}/Group.hpp src/Group.cpp
+        ${INCLUDE_DIR}/NationalTeam.hpp src/NationalTeam.cpp
 )
