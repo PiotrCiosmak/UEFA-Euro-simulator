@@ -7,8 +7,9 @@ set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 
 include_directories(${INCLUDE_DIR})
 
-add_executable(euro_simulation main.cpp
-        ${INCLUDE_DIR}/Injury.hpp src/Injury.cpp
+add_executable(euro_simulation apps/main.cpp
+        ${INCLUDE_DIR}/utils/TextUtils.hpp
+        ${INCLUDE_DIR}/player/Injury.hpp src/player/Injury.cpp
         ${INCLUDE_DIR}/Nationality.hpp
         ${INCLUDE_DIR}/player/Player.hpp src/player/Player.cpp
         ${INCLUDE_DIR}/player/Position.hpp
@@ -16,5 +17,11 @@ add_executable(euro_simulation main.cpp
         ${INCLUDE_DIR}/squad/FormationsManager.hpp src/squad/FormationsManager.cpp
         ${INCLUDE_DIR}/squad/Squad.hpp src/squad/Squad.cpp
         ${INCLUDE_DIR}/Group.hpp src/Group.cpp
-        ${INCLUDE_DIR}/NationalTeam.hpp src/NationalTeam.cpp
+        ${INCLUDE_DIR}/national_team/NationalTeam.hpp src/national_team/NationalTeam.cpp
+        ${INCLUDE_DIR}/national_team/GroupStatistics.hpp
+        ${INCLUDE_DIR}/national_team/KnockoutStageStatistics.hpp
+        ${INCLUDE_DIR}/Euro.hpp src/Euro.cpp
+        ${INCLUDE_DIR}/Schedule.hpp src/Schedule.cpp
+        ${INCLUDE_DIR}/match/Match.hpp src/match/Match.cpp
+        ${INCLUDE_DIR}/match/MatchStatistics.hpp src/match/MatchStatistics.cpp
 )

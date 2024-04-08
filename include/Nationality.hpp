@@ -1,5 +1,9 @@
 #pragma once
 
+#include "utils/TextUtils.hpp"
+
+#include <string>
+
 enum class Nationality
 {
     Germany,
@@ -28,7 +32,7 @@ enum class Nationality
     Georgia
 };
 
-std::string countryToString(const Nationality nationality)
+inline auto nationalityToString(const Nationality nationality) -> std::string
 {
     switch (nationality)
     {
@@ -58,4 +62,58 @@ std::string countryToString(const Nationality nationality)
         case Nationality::Georgia: return "Georgia";
         default: return "Unknown";
     }
+}
+
+inline auto stringToNationality(std::string nationality) -> Nationality
+{
+    text_utis::stringToLower(nationality);
+
+    if (nationality == "germany")
+        return Nationality::Germany;
+    if (nationality == "spain")
+        return Nationality::Spain;
+    if (nationality == "france")
+        return Nationality::France;
+    if (nationality == "england")
+        return Nationality::England;
+    if (nationality == "turkey")
+        return Nationality::Turkey;
+    if (nationality == "albania")
+        return Nationality::Albania;
+    if (nationality == "belgium")
+        return Nationality::Belgium;
+    if (nationality == "hungary")
+        return Nationality::Hungary;
+    if (nationality == "denmark")
+        return Nationality::Denmark;
+    if (nationality == "romania")
+        return Nationality::Romania;
+    if (nationality == "portugal")
+        return Nationality::Portugal;
+    if (nationality == "scotland")
+        return Nationality::Scotland;
+    if (nationality == "netherlands")
+        return Nationality::Netherlands;
+    if (nationality == "italy")
+        return Nationality::Italy;
+    if (nationality == "croatia")
+        return Nationality::Croatia;
+    if (nationality == "czech republic" || nationality == "czechrepublic")
+        return Nationality::CzechRepublic;
+    if (nationality == "austria")
+        return Nationality::Austria;
+    if (nationality == "serbia")
+        return Nationality::Serbia;
+    if (nationality == "slovenia")
+        return Nationality::Slovenia;
+    if (nationality == "switzerland")
+        return Nationality::Switzerland;
+    if (nationality == "slovakia")
+        return Nationality::Slovakia;
+    if (nationality == "poland")
+        return Nationality::Poland;
+    if (nationality == "ukraine")
+        return Nationality::Ukraine;
+    if (nationality == "georgia")
+        return Nationality::Georgia;
 }
