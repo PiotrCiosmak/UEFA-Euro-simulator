@@ -1,5 +1,9 @@
 #pragma once
 
+#include <iostream>
+
+#include "utils/TextUtils.hpp"
+
 enum class Position
 {
     Goalkeeper,
@@ -8,19 +12,37 @@ enum class Position
     Attacker
 };
 
-std::string positionToString(const Position position)
+namespace position_utils
 {
-    switch (position)
+    inline auto positionToString(const Position position) -> std::string
     {
-        case Position::Goalkeeper:
-            return "goalkeeper";
-        case Position::Defender:
-            return "defender";
-        case Position::Midfielder:
-            return "midfielder";
-        case Position::Attacker:
-            return "attacker";
-        default:
-            return "Unknown";
+        switch (position)
+        {
+            case Position::Goalkeeper:
+                return "goalkeeper";
+            case Position::Defender:
+                return "defender";
+            case Position::Midfielder:
+                return "midfielder";
+            case Position::Attacker:
+                return "attacker";
+        }
+        std::cerr << "Error: Invalid position." << std::endl;
+        exit(1);
+    }
+
+    inline auto stringToPosition(std::string position) -> Position
+    {
+        text_utils::stringToLower(position);
+        if (position == "goalkeeper")
+            return Position::Goalkeeper;
+        if (position == "defender")
+            return Position::Defender;
+        if (position == "midfielder")
+            return Position::Midfielder;
+        if (position == "attacker")
+            return Position::Attacker;
+        std::cerr << "Error: Invalid position." << std::endl;
+        exit(1);
     }
 }
