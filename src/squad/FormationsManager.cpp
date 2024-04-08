@@ -1,7 +1,7 @@
 #include "squad/FormationsManager.hpp"
 
-#include <fstream>
 #include <iostream>
+#include <fstream>
 
 FormationsManager *FormationsManager::instance()
 {
@@ -11,7 +11,7 @@ FormationsManager *FormationsManager::instance()
 
 auto FormationsManager::showAll() const -> size_t
 {
-    const auto formation_number = formations.size();
+    constexpr static auto formation_number = formations.size();
     for (int i = 0; i < formation_number; ++i)
     {
         std::cout << i + 1 << ". " << formations.at(i) << std::endl;
@@ -24,22 +24,27 @@ auto FormationsManager::getFormation(size_t index) -> std::string
     return formations.at(index);
 }
 
+FormationsManager::~FormationsManager()
+{
+    delete
+}
+
 FormationsManager::FormationsManager()
 {
-    const auto file_name = "formations.csv";
+    constexpr static auto file_name = "formations.csv";
     std::ifstream file{file_name};
     if (file.is_open())
     {
         std::string line;
         while (std::getline(file, line))
         {
-            formations.push_back(line);
+            formations.fill(line);
         }
         file.close();
     }
     else
     {
-        std::cerr << "Unable to open file " << file_name << std::endl;
+        std::cerr << "Error: Unable to open file " << file_name << std::endl;
         exit(1);
     }
 }

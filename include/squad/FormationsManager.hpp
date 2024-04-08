@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <vector>
+#include <array>
 
 class FormationsManager
 {
@@ -11,9 +11,9 @@ public:
     static FormationsManager *instance();
     [[nodiscard]] auto showAll() const -> size_t;
     [[nodiscard]] auto getFormation(size_t index) -> std::string;
-
+    ~FormationsManager();
 private:
     FormationsManager();
 
-    std::vector<std::string> formations;
+    std::array<std::string, 31> formations;
 };
