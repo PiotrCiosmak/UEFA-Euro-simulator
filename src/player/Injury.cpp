@@ -1,4 +1,4 @@
-#include "Injury.hpp"
+#include "../../include/player/Injury.hpp"
 
 #include <chrono>
 
@@ -21,7 +21,7 @@ auto Injury::getDaysToRecovery() const -> int
     return days_to_recovery;
 }
 
-auto Injury::returnDate() const -> std::string
+auto Injury::getReturnDate() const -> std::string
 {
     const auto today = std::chrono::system_clock::now();
     const auto recovery_date = today + std::chrono::hours(24 * days_to_recovery);
@@ -31,7 +31,7 @@ auto Injury::returnDate() const -> std::string
     return ss.str();
 }
 
-void Injury::setDaysToRecovery(int new_days_to_recovery)
+void Injury::setDaysToRecovery(const int new_days_to_recovery)
 {
     this->days_to_recovery = new_days_to_recovery;
 }

@@ -9,7 +9,7 @@ public:
     Injury(bool new_injured, int new_days_to_recovery);
     [[nodiscard]] auto isInjured() const -> bool;
     [[nodiscard]] auto getDaysToRecovery() const -> int;
-    [[nodiscard]] auto returnDate() const -> std::string;
+    [[nodiscard]] auto getReturnDate() const -> std::string;
     void setDaysToRecovery(int new_days_to_recovery);
 
 private:
