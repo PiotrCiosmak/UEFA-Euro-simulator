@@ -2,6 +2,7 @@
 
 #include "Injury.hpp"
 #include "Nationality.hpp"
+#include "PlayerStatistics.hpp"
 #include "Position.hpp"
 
 class Player
@@ -11,19 +12,17 @@ public:
            Nationality new_nationality, Position new_position);
     [[nodiscard]] auto getName() const -> std::string;
     [[nodiscard]] auto getOverall() const -> int;
-    [[nodiscard]] auto getNumberOfGoals() const -> int;
-    [[nodiscard]] auto getNumberOfAssists() const -> int;
+    [[nodiscard]] auto getStatistics() const -> PlayerStatistics;
     [[nodiscard]] auto getNationality() const -> Nationality;
     [[nodiscard]] auto getInjury() const -> Injury;
     [[nodiscard]] auto getPosition() const -> Position;
 
-protected:
+private:
     std::string first_name;
     std::string last_name;
     int overall;
     Injury injury;
     Nationality nationality;
-    int goals;
-    int assists;
+    PlayerStatistics player_statistics;
     Position position;
 };
