@@ -1,8 +1,8 @@
 #pragma once
 
-#include <iostream>
-
 #include "utils/TextUtils.hpp"
+
+#include <iostream>
 
 enum class Position
 {
