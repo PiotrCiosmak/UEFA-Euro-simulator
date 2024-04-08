@@ -19,40 +19,6 @@ void Squad::setSquad()
     chooseSubstitutes();
 }
 
-void Squad::showSquad() const
-{
-    std::cout << "Formation: " << formation << std::endl;
-    printPlayers("Goalkeeper", goalkeeper);
-    printPlayers("Defenders", defenders);
-    printPlayers("Midfielders", midfielders);
-    printPlayers("Attackers", attackers);
-}
-
-auto Squad::isSquadSet() const -> bool
-{
-    if (getTargetNumberOfPlayersByPosition(Position::Goalkeeper) != goalkeeper.size())
-    {
-        return false;
-    }
-    if (getTargetNumberOfPlayersByPosition(Position::Defender) != defenders.size())
-    {
-        return false;
-    }
-    if (getTargetNumberOfPlayersByPosition(Position::Midfielder) != midfielders.size())
-    {
-        return false;
-    }
-    if (getTargetNumberOfPlayersByPosition(Position::Attacker) != attackers.size())
-    {
-        return false;
-    }
-    if (target_substitutes_number != substitutes.size())
-    {
-        return false;
-    }
-    return true;
-}
-
 void Squad::chooseFormation()
 {
     const auto formation_manager = FormationsManager::instance();
@@ -91,7 +57,7 @@ void Squad::choosePlayersByPosition(const Position position,
 {
     const auto target_players_number = getTargetNumberOfPlayersByPosition(position);
     auto selected_players_number = 0;
-    const auto selected_position = positionToString(position);
+    const auto selected_position = position_utils::positionToString(position);
 
     std::cout << "List of " << selected_position << "s\n"; //
     printAllPlayersByPosition(position);
@@ -113,9 +79,14 @@ void Squad::choosePlayersByPosition(const Position position,
             players.erase(it);
             selected_players_number++;
         }
+        else if (it->get()->getInjury().isInjured() == true)
+        {
+            std::cout << "Player " << player_name << " is injured. Please enter valid player name." << std::endl;
+        }
         else
         {
-            std::cerr << "Player with the surname " << player_name << " doesn't exists." << std::endl;
+            std::cout << "Player " << player_name <<
+                    " doesn't exists. Please enter player name that exist's on the list." << std::endl;
         }
     } while (selected_players_number != target_players_number);
 }
@@ -125,27 +96,10 @@ void Squad::printAllPlayersByPosition(const Position position) const
     auto counter = 0;
     for (const auto &player: players)
     {
-        if (player->getPosition() == position)
+        if (player->getPosition() == position && player->getInjury().isInjured() == false)
         {
             std::cout << ++counter << ". " << player->getName() << "(" << player->getOverall() << ")\n";
         }
-    }
-}
-
-auto Squad::getTargetNumberOfPlayersByPosition(const Position position) const -> int
-{
-    switch (position)
-    {
-        case Position::Goalkeeper:
-            return 1;
-        case Position::Defender:
-            return std::stoi(formation.substr(0, 1));
-        case Position::Midfielder:
-            return std::stoi(formation.substr(2, 1));
-        case Position::Attacker:
-            return std::stoi(formation.substr(4, 1));
-        default:
-            return 0;
     }
 }
 
@@ -173,9 +127,14 @@ void Squad::chooseSubstitutes()
             players.erase(it);
             selected_substitutes_number++;
         }
+        else if (it->get()->getInjury().isInjured() == true)
+        {
+            std::cout << "Player " << player_name << " is injured. Please enter valid player name." << std::endl;
+        }
         else
         {
-            std::cerr << "Player with the surname " << player_name << " doesn't exists." << std::endl;
+            std::cout << "Player " << player_name <<
+                    " doesn't exists. Please enter player name that exist's on the list." << std::endl;
         }
     } while (selected_substitutes_number != target_substitutes_number);
 }
@@ -185,8 +144,20 @@ void Squad::printAllUnselectedPlayers() const
     auto counter = 0;
     for (const auto &player: players)
     {
-        std::cout << ++counter << ". " << player->getName() << "(" << player->getOverall() << ")\n";
+        if (player->getInjury().isInjured() == false)
+        {
+            std::cout << ++counter << ". " << player->getName() << "(" << player->getOverall() << ")\n";
+        }
     }
+}
+
+void Squad::showSquad() const
+{
+    std::cout << "Formation: " << formation << std::endl;
+    printPlayers("Goalkeeper", goalkeeper);
+    printPlayers("Defenders", defenders);
+    printPlayers("Midfielders", midfielders);
+    printPlayers("Attackers", attackers);
 }
 
 void Squad::printPlayers(const std::string &position, const std::vector<std::shared_ptr<Player>> &players)
@@ -197,4 +168,46 @@ void Squad::printPlayers(const std::string &position, const std::vector<std::sha
         std::cout << player->getName() << ", ";
     }
     std::cout << std::endl;
+}
+
+auto Squad::isSquadSet() const -> bool
+{
+    if (getTargetNumberOfPlayersByPosition(Position::Goalkeeper) != goalkeeper.size())
+    {
+        return false;
+    }
+    if (getTargetNumberOfPlayersByPosition(Position::Defender) != defenders.size())
+    {
+        return false;
+    }
+    if (getTargetNumberOfPlayersByPosition(Position::Midfielder) != midfielders.size())
+    {
+        return false;
+    }
+    if (getTargetNumberOfPlayersByPosition(Position::Attacker) != attackers.size())
+    {
+        return false;
+    }
+    if (target_substitutes_number != substitutes.size())
+    {
+        return false;
+    }
+    return true;
+}
+
+auto Squad::getTargetNumberOfPlayersByPosition(const Position position) const -> int
+{
+    switch (position)
+    {
+        case Position::Goalkeeper:
+            return 1;
+        case Position::Defender:
+            return std::stoi(formation.substr(0, 1));
+        case Position::Midfielder:
+            return std::stoi(formation.substr(2, 1));
+        case Position::Attacker:
+            return std::stoi(formation.substr(4, 1));
+        default:
+            return 0;
+    }
 }

@@ -1,9 +1,9 @@
 #pragma once
 
+#include "player/Player.hpp"
+
 #include <memory>
 #include <vector>
-
-#include "player/Player.hpp"
 
 class Squad
 {
@@ -29,5 +29,5 @@ private:
     std::vector<std::shared_ptr<Player>> midfielders;
     std::vector<std::shared_ptr<Player>> attackers;
     std::vector<std::shared_ptr<Player>> substitutes;
-    constexpr int target_substitutes_number = 5;
+    constexpr static auto target_substitutes_number = 5;
 };
