@@ -1,4 +1,4 @@
-#include "../../include/player/Injury.hpp"
+#include "player/Injury.hpp"
 
 #include <chrono>
 
