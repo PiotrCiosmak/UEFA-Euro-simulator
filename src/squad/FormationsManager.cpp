@@ -31,7 +31,7 @@ FormationsManager::~FormationsManager()
 
 FormationsManager::FormationsManager()
 {
-    constexpr static auto file_name = "formations.csv";
+    constexpr auto file_name = "formations.csv";
     std::ifstream file{file_name};
     if (file.is_open())
     {
