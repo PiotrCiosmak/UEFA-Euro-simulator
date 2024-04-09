@@ -12,6 +12,7 @@ public:
     [[nodiscard]] auto getGoalsConceded() const -> int;
     [[nodiscard]] auto getYellowCards() const -> int;
     [[nodiscard]] auto getRedCards() const -> int;
+    virtual ~Statistics() = default;
 
 protected:
     int matches_played;
