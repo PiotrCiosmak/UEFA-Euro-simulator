@@ -13,6 +13,7 @@ public:
     NationalTeam(Nationality new_country_name, int new_position_in_ranking);
     [[nodiscard]] NationalTeam getCountryName() const -> Nationality;
     [[nodiscard]] auto getPositionInRanking() const -> int;
+    [[nodiscard]] auto getSquad() const -> std::shared_ptr<Squad>;
     void showStatistics(MatchStage stage) const;
     [[nodiscard]] auto getGroupStageStatistics() const -> std::shared_ptr<GroupStatistics>;
     [[nodiscard]] auto getKnockoutStageStatistics() const -> std::shared_ptr<KnockoutStageStatistics>;

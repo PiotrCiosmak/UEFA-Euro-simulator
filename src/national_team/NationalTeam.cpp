@@ -65,6 +65,11 @@ auto NationalTeam::getPositionInRanking() const -> int
     return position_in_ranking;
 }
 
+auto NationalTeam::getSquad() const -> std::shared_ptr<Squad>
+{
+    return squad;
+}
+
 void NationalTeam::showStatistics(const MatchStage stage) const
 {
     std::cout << nationality_utils::nationalityToString(county_name);
