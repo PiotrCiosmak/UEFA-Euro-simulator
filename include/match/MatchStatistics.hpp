@@ -6,6 +6,7 @@ class MatchStatistics
 {
 public:
     MatchStatistics();
+    auto getGoals() -> std::array<int, 2>;
     void show() const;
 
 private:

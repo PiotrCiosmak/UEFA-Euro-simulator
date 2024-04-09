@@ -7,6 +7,11 @@ MatchStatistics::MatchStatistics(): goals{0, 0}, yellow_cards{0, 0}, red_cards{0
 {
 }
 
+auto MatchStatistics::getGoals() -> std::array<int, 2>
+{
+    return goals;
+}
+
 void MatchStatistics::show() const
 {
     std::cout << "Home Team Statistics:" << std::endl;
