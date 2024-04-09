@@ -102,7 +102,7 @@ void NationalTeam::showGroupStageStatistics() const
 
 void NationalTeam::showKnockoutStageStatistics() const
 {
-    const auto knockout_statistics = std::dynamic_pointer_cast<KnockoutStageStatistics>(statistics.at(0));
+    const auto knockout_statistics = std::dynamic_pointer_cast<KnockoutStageStatistics>(statistics.at(1));
 
     std::cout << "Statistics in knockoutstage" << std::endl;
     std::cout << "Actual stage: " << knockout_statistics->getStage() << std::endl;
@@ -113,4 +113,20 @@ void NationalTeam::showKnockoutStageStatistics() const
     std::cout << "Goals conceded: " << knockout_statistics->getGoalsConceded() << std::endl;
     std::cout << "Yellow cards: " << knockout_statistics->getYellowCards() << std::endl;
     std::cout << "Red cards: " << knockout_statistics->getRedCards() << std::endl;
+}
+
+auto NationalTeam::getGroupStageStatistics() const -> std::shared_ptr<GroupStatistics>
+{
+    return std::dynamic_pointer_cast<GroupStatistics>(statistics.at(0));
+}
+
+auto NationalTeam::getKnockoutStageStatistics() const -> std::shared_ptr<KnockoutStageStatistics>
+{
+    const auto knockout_statitsics = std::dynamic_pointer_cast<KnockoutStageStatistics>(statistics.at(1));
+    if (knockout_statitsics)
+    {
+        return knockout_statitsics;
+    }
+    std::cerr << "Error: Knockout stage didn't stared." << std::endl;
+    exit(1);
 }

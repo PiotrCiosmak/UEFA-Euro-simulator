@@ -4,7 +4,8 @@
 #include "player/Player.hpp"
 #include "MatchStage.hpp"
 #include "squad/Squad.hpp"
-#include "statistics/Statistics.hpp"
+#include "statistics/GroupStatistics.hpp"
+#include "statistics/KnockoutStageStatistics.hpp"
 
 class NationalTeam
 {
@@ -13,6 +14,8 @@ public:
     [[nodiscard]] NationalTeam getCountryName() const -> Nationality;
     [[nodiscard]] auto getPositionInRanking() const -> int;
     void showStatistics(MatchStage stage) const;
+    [[nodiscard]] auto getGroupStageStatistics() const -> std::shared_ptr<GroupStatistics>;
+    [[nodiscard]] auto getKnockoutStageStatistics() const -> std::shared_ptr<KnockoutStageStatistics>;
 
 private:
     void loadPlayers();
