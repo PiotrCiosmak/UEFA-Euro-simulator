@@ -211,3 +211,23 @@ auto Squad::getTargetNumberOfPlayersByPosition(const Position position) const ->
             return 0;
     }
 }
+
+auto Squad::getOverall() const -> int
+{
+    auto overall = 0;
+    overall += sumOveral(goalkeeper);
+    overall += sumOveral(defenders);
+    overall += sumOveral(midfielders);
+    overall += sumOveral(attackers);
+    return overall;
+}
+
+auto Squad::sumOveral(std::vector<std::shared_ptr<Player>> players) const -> int
+{
+    auto overall = 0;
+    for (const auto &player: goalkeeper)
+    {
+        overall += player->getOverall();
+    }
+    return overall;
+}

@@ -12,6 +12,7 @@ public:
     void setSquad();
     void show() const;
     [[nodiscard]] auto isSquadSet() const -> bool;
+    [[nodiscard]] auto getOverall() const -> int;
 
 private:
     void chooseFormation();
@@ -21,6 +22,7 @@ private:
     void chooseSubstitutes();
     void printAllUnselectedPlayers() const;
     static void printPlayers(const std::string &position, const std::vector<std::shared_ptr<Player>> &players);
+    [[nodiscard]] auto sumOveral(std::vector<std::shared_ptr<Player>> players) const -> int;
 
     std::vector<std::shared_ptr<Player>> players;
     std::string formation;
