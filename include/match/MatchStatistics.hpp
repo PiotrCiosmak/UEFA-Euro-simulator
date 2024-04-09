@@ -6,7 +6,8 @@ class MatchStatistics
 {
 public:
     MatchStatistics();
-    auto getGoals() -> std::array<int, 2>;
+    [[nodiscard]] auto getGoals() const -> std::array<int, 2>;
+    [[nodiscard]] auto getAvailableChanges() const -> std::array<int, 2>;
     void homeScoreGoal();
     void awayScoreGoal();
     void homeGetYellowCard();

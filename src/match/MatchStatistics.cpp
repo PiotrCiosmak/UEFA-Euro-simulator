@@ -7,10 +7,16 @@ MatchStatistics::MatchStatistics(): goals{0, 0}, yellow_cards{0, 0}, red_cards{0
 {
 }
 
-auto MatchStatistics::getGoals() -> std::array<int, 2>
+auto MatchStatistics::getGoals() const -> std::array<int, 2>
 {
     return goals;
 }
+
+auto MatchStatistics::getAvailableChanges() const -> std::array<int, 2>
+{
+    return changes_available;
+}
+
 
 void MatchStatistics::homeScoreGoal()
 {
