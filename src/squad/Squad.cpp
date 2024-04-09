@@ -151,7 +151,7 @@ void Squad::printAllUnselectedPlayers() const
     }
 }
 
-void Squad::showSquad() const
+void Squad::show() const
 {
     std::cout << "Formation: " << formation << std::endl;
     printPlayers("Goalkeeper", goalkeeper);

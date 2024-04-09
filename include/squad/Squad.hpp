@@ -10,7 +10,7 @@ class Squad
 public:
     explicit Squad(const std::vector<std::shared_ptr<Player>> &new_players);
     void setSquad();
-    void showSquad() const;
+    void show() const;
     [[nodiscard]] auto isSquadSet() const -> bool;
 
 private:
