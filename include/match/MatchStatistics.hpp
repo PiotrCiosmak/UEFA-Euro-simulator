@@ -14,8 +14,8 @@ public:
     void awayGetYellowCard();
     void homeGetRedCard();
     void awayGetRedCard();
-    [[nodiscard]] auto homeMakeChange() -> bool;
-    [[nodiscard]] auto awayMakeChange() -> bool;
+    void homeMakeChange();
+    void awayMakeChange();
     void show() const;
 
 private:

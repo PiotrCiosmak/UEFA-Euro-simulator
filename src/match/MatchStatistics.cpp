@@ -48,24 +48,14 @@ void MatchStatistics::awayGetRedCard()
     red_cards.at(1) += 1;
 }
 
-auto MatchStatistics::homeMakeChange() -> bool
+void MatchStatistics::homeMakeChange()
 {
-    if (max_changes - changes_available.at(0) > 0)
-    {
-        changes_available.at(0) -= 1;
-        return true;
-    }
-    return false;
+    changes_available.at(0) -= 1;
 }
 
-auto MatchStatistics::awayMakeChange() -> bool
+void MatchStatistics::awayMakeChange()
 {
-    if (max_changes - changes_available.at(0) > 0)
-    {
-        changes_available.at(0) -= 1;
-        return true;
-    }
-    return false;
+    changes_available.at(0) -= 1;
 }
 
 void MatchStatistics::show() const
