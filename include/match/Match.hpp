@@ -15,7 +15,7 @@ public:
     void showResult() const;
     void showSquads() const;
     void showStatistics() const;
-    void showInfo() const;
+    void showInformation() const;
     [[nodiscard]] auto isFinished() const->bool;
 
 private:

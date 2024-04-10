@@ -557,7 +557,7 @@ void Match::showStatistics() const
     statistics.show();
 }
 
-void Match::showInfo() const
+void Match::showInformation() const
 {
     std::cout << nationality_utils::nationalityToString(national_teams.at(0)->getCountryName()) << " vs " <<
             nationality_utils::nationalityToString(national_teams.at(1)->getCountryName()) << ", " << date << std::endl;
