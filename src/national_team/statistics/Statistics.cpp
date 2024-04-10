@@ -5,6 +5,46 @@ Statistics::Statistics(): matches_played{0}, wins{0}, draws{0}, loses{0}, goals_
 {
 }
 
+void Statistics::addMatche()
+{
+    matches_played++;
+}
+
+void Statistics::addWin()
+{
+    wins++;
+}
+
+void Statistics::addDraw()
+{
+    draws++;
+}
+
+void Statistics::addLose()
+{
+    loses++;
+}
+
+void Statistics::addGoalScored()
+{
+    goals_scored++;
+}
+
+void Statistics::addGoalConceded()
+{
+    goals_conceded++;
+}
+
+void Statistics::addYellowCard()
+{
+    yellow_cards++;
+}
+
+void Statistics::addRedCard()
+{
+    red_cards++;
+}
+
 auto Statistics::getMatchesPlayed() const -> int
 {
     return matches_played;

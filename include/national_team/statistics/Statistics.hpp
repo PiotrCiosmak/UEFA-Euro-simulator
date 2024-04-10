@@ -4,6 +4,14 @@ class Statistics
 {
 public:
     Statistics();
+    void addMatche();
+    void addWin();
+    void addDraw();
+    void addLose();
+    void addGoalScored();
+    void addGoalConceded();
+    void addYellowCard();
+    void addRedCard();
     [[nodiscard]] auto getMatchesPlayed() const -> int;
     [[nodiscard]] auto getWins() const -> int;
     [[nodiscard]] auto getDraws() const -> int;
