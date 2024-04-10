@@ -231,3 +231,21 @@ auto Squad::sumOveral(std::vector<std::shared_ptr<Player>> players) const -> int
     }
     return overall;
 }
+
+auto Squad::getAllFieldPlayers() const -> std::array<std::shared_ptr<Player>, 10>
+{
+    std::array<std::shared_ptr<Player>, 10> players = {};
+    for (const auto &player: defenders)
+    {
+        players.fill(player);
+    }
+    for (const auto &player: midfielders)
+    {
+        players.fill(player);
+    }
+    for (const auto &player: attackers)
+    {
+        players.fill(player);
+    }
+    return players;
+}
