@@ -563,6 +563,11 @@ void Match::showInformation() const
             nationality_utils::nationalityToString(national_teams.at(1)->getCountryName()) << ", " << date << std::endl;
 }
 
+auto Match::getStage() const -> MatchStage
+{
+    return stage;
+}
+
 auto Match::isFinished() const -> bool
 {
     return finished;
