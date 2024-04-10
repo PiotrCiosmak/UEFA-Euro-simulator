@@ -19,7 +19,7 @@ auto Player::getOverall() const -> int
     return overall;
 }
 
-auto Player::getStatistics() const -> PlayerStatistics
+auto Player::getStatistics() -> PlayerStatistics&
 {
     return player_statistics;
 }

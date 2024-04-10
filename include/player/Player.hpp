@@ -12,7 +12,7 @@ public:
            Nationality new_nationality, Position new_position);
     [[nodiscard]] auto getName() const -> std::string;
     [[nodiscard]] auto getOverall() const -> int;
-    [[nodiscard]] auto getStatistics() const -> PlayerStatistics;
+    [[nodiscard]] auto getStatistics() -> PlayerStatistics&;
     [[nodiscard]] auto getNationality() const -> Nationality;
     [[nodiscard]] auto getInjury() const -> Injury;
     [[nodiscard]] auto getPosition() const -> Position;
