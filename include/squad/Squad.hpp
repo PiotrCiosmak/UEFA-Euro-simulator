@@ -14,6 +14,7 @@ public:
     [[nodiscard]] auto isSquadSet() const -> bool;
     [[nodiscard]] auto getOverall() const -> int;
     [[nodiscard]] auto getAllFieldPlayers() const -> std::array<std::shared_ptr<Player>, 10>;
+    [[nodiscard]] auto getAllPlayers() const -> std::array<std::shared_ptr<Player>, 11>;
 
 private:
     void chooseFormation();

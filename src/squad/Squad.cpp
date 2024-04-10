@@ -249,3 +249,16 @@ auto Squad::getAllFieldPlayers() const -> std::array<std::shared_ptr<Player>, 10
     }
     return players;
 }
+
+auto Squad::getAllPlayers() const -> std::array<std::shared_ptr<Player>, 11>
+{
+    const auto field_players = getAllFieldPlayers();
+    std::array<std::shared_ptr<Player>, 11> players = {};
+    for (const auto &player: field_players)
+    {
+        players.fill(player);
+    }
+
+    players.fill(goalkeeper.at(0));
+    return players;
+}
