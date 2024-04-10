@@ -33,5 +33,7 @@ auto Injury::getReturnDate() const -> std::string
 
 void Injury::setDaysToRecovery(const int new_days_to_recovery)
 {
+    //TODO zrobic cos zeby kontuzja 9day co dziennie -1 i jak beda na 0 to zeby injuted na false
+    this->injured = true;
     this->days_to_recovery = new_days_to_recovery;
 }
