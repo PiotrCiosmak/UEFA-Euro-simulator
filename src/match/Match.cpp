@@ -556,3 +556,8 @@ void Match::showStatistics() const
 {
     statistics.show();
 }
+
+auto Match::isFinished() const -> bool
+{
+    return finished;
+}

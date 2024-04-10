@@ -15,6 +15,7 @@ public:
     void showResult() const;
     void showSquads() const;
     void showStatistics() const;
+    [[nodiscard]] auto isFinished() const->bool;
 
 private:
     [[nodiscard]] auto calculateOverallAddition() const -> std::pair<int, int>;
