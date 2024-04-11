@@ -36,9 +36,11 @@ FormationsManager::FormationsManager()
     if (file.is_open())
     {
         std::string line;
+        auto counter = 0;
         while (std::getline(file, line))
         {
-            formations.fill(line);
+            formations.at(counter) = line;
+            counter++;
         }
         file.close();
     }
