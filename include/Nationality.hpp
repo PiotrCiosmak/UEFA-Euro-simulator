@@ -5,36 +5,46 @@
 #include <iostream>
 #include <string>
 
+/**
+ * @brief Enumeration representing various nationalities.
+ */
 enum class Nationality
 {
-    Germany,
-    Spain,
-    France,
-    England,
-    Turkey,
-    Albania,
-    Belgium,
-    Hungary,
-    Denmark,
-    Romania,
-    Portugal,
-    Scotland,
-    Netherlands,
-    Italy,
-    Croatia,
-    CzechRepublic,
-    Austria,
-    Serbia,
-    Slovenia,
-    Switzerland,
-    Slovakia,
-    Poland,
-    Ukraine,
-    Georgia
+    Germany, ///< Represents the nationality Germany.
+    Spain, ///< Represents the nationality Spain.
+    France, ///< Represents the nationality France.
+    England, ///< Represents the nationality England.
+    Turkey, ///< Represents the nationality Turkey.
+    Albania, ///< Represents the nationality Albania.
+    Belgium, ///< Represents the nationality Belgium.
+    Hungary, ///< Represents the nationality Hungary.
+    Denmark, ///< Represents the nationality Denmark.
+    Romania, ///< Represents the nationality Romania.
+    Portugal, ///< Represents the nationality Portugal.
+    Scotland, ///< Represents the nationality Scotland.
+    Netherlands, ///< Represents the nationality Netherlands.
+    Italy, ///< Represents the nationality Italy.
+    Croatia, ///< Represents the nationality Croatia.
+    CzechRepublic, ///< Represents the nationality Czech Republic.
+    Austria, ///< Represents the nationality Austria.
+    Serbia, ///< Represents the nationality Serbia.
+    Slovenia, ///< Represents the nationality Slovenia.
+    Switzerland, ///< Represents the nationality Switzerland.
+    Slovakia, ///< Represents the nationality Slovakia.
+    Poland, ///< Represents the nationality Poland.
+    Ukraine, ///< Represents the nationality Ukraine.
+    Georgia ///< Represents the nationality Georgia.
 };
 
 namespace nationality_utils
 {
+    /**
+     * @brief Converts a Nationality enum value to its corresponding string representation.
+     *
+     * @param nationality The Nationality enum value.
+     * @param tolower Flag indicating whether to convert the string to lowercase (default is false).
+     * @return The string representation of the nationality.
+     */
     inline auto nationalityToString(const Nationality nationality, bool tolower = false) -> std::string
     {
         std::string country_name;
@@ -127,6 +137,12 @@ namespace nationality_utils
         return country_name;
     }
 
+    /**
+     * @brief Converts a string to its corresponding Nationality enum value.
+     *
+     * @param nationality The string representation of the nationality.
+     * @return The Nationality enum value.
+     */
     inline auto stringToNationality(std::string nationality) -> Nationality
     {
         text_utils::stringToLower(nationality);

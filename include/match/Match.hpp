@@ -3,20 +3,52 @@
 #include "MatchStatistics.hpp"
 #include "national_team/NationalTeam.hpp"
 
-#include <memory>
-#include <string>
-
+/**
+ * @brief Class representing a football match between two national teams.
+ */
 class Match
 {
 public:
+    /**
+             * @brief Constructor for Match class.
+             *
+             * @param new_date The date of the match.
+             * @param new_stage The stage of the match (e.g., group stage, knockout stage).
+             * @param new_national_team Array containing pointers to the two national teams participating in the match.
+        */
     Match(std::string new_date, MatchStage new_stage,
           const std::array<std::shared_ptr<NationalTeam>, 2> &new_national_team);
+    /**
+     * @brief Simulates the course of the match.
+     */
     void simulate();
+    /**
+     * @brief Displays the result of the match.
+     */
     void showResult() const;
+    /**
+     * @brief Displays the squads of the teams.
+     */
     void showSquads() const;
+    /**
+        * @brief Displays the match statistics.
+    */
     void showStatistics() const;
+    /**
+     * @brief Displays information about the match.
+     */
     void showInformation() const;
+    /**
+     * @brief Gets the stage of the match.
+     *
+     * @return The stage of the match.
+     */
     [[nodiscard]] auto getStage() const -> MatchStage;
+    /**
+     * @brief Checks if the match has finished.
+     *
+     * @return true if the match has finished, false otherwise.
+     */
     [[nodiscard]] auto isFinished() const -> bool;
 
 private:

@@ -5,15 +5,49 @@
 #include <memory>
 #include <vector>
 
+/**
+ * @brief Class representing a squad of football players.
+ */
 class Squad
 {
 public:
+    /**
+     * @brief Constructor for Squad class.
+     *
+     * @param new_players A vector of shared pointers to players to be included in the squad.
+     */
     explicit Squad(const std::vector<std::shared_ptr<Player>> &new_players);
+    /**
+     * @brief Sets up the squad by choosing players for each position and substitutes.
+     */
     void setSquad();
+    /**
+     * @brief Displays the squad.
+     */
     void show() const;
+    /**
+     * @brief Checks if the squad is set.
+     *
+     * @return true if the squad is set, false otherwise.
+     */
     [[nodiscard]] auto isSquadSet() const -> bool;
+    /**
+     * @brief Calculates the overall rating of the squad.
+     *
+     * @return The overall rating of the squad.
+     */
     [[nodiscard]] auto getOverall() const -> int;
+    /**
+     * @brief Gets all field players in the squad.
+     *
+     * @return An array of shared pointers to field players in the squad.
+     */
     [[nodiscard]] auto getAllFieldPlayers() const -> std::array<std::shared_ptr<Player>, 10>;
+    /**
+     * @brief Gets all players in the squad, including substitutes.
+     *
+     * @return An array of shared pointers to all players in the squad.
+     */
     [[nodiscard]] auto getAllPlayers() const -> std::array<std::shared_ptr<Player>, 11>;
 
 private:
