@@ -27,7 +27,7 @@ auto FormationsManager::getFormation(size_t index) -> std::string
 
 FormationsManager::FormationsManager()
 {
-    constexpr auto file_name = "data/formations.txt";
+    constexpr auto file_name = "../data/formations.txt";
     std::ifstream file{file_name};
     if (file.is_open())
     {
