@@ -74,7 +74,7 @@ void Match::simulate()
         if (const auto goals = statistics.getGoals(); stage == MatchStage::KnockoutStage && goals.at(0) == goals.at(1))
         {
             startSimulation(30);
-            auto penality_result{0, 0};
+            std::array penality_result{0, 0};
             if (const auto goals = statistics.getGoals(); goals.at(0) == goals.at(1))
             {
                 penality_result = getPenalityResult();
