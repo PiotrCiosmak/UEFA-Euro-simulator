@@ -1,0 +1,24 @@
+germany 16
+spain 8
+france 2
+england 4
+turkey 40
+albania 66
+belgium 3
+hungary 26
+denmark 21
+romania 46
+portugal 6
+scotland 39
+netherlands 7
+italy 9
+croatia 10
+czech republic 36
+austria 25
+serbia 33
+slovenia 57
+switzerland 19
+slovakia 48
+poland 28
+ukraine 22
+georgia 75
