@@ -11,7 +11,7 @@ class NationalTeam
 {
 public:
     NationalTeam(Nationality new_country_name, int new_position_in_ranking);
-    [[nodiscard]] NationalTeam getCountryName() const -> Nationality;
+    [[nodiscard]] auto getCountryName() const -> Nationality;
     [[nodiscard]] auto getPositionInRanking() const -> int;
     [[nodiscard]] auto getSquad() const -> std::shared_ptr<Squad>;
     void showStatistics(MatchStage stage) const;
@@ -30,5 +30,5 @@ private:
     std::shared_ptr<Squad> squad;
     //TODO podczas awansu z grupy dodajemy pusty obiekt knockoutStastics
     std::vector<std::shared_ptr<Statistics>> statistics;
-    constexpr auto max_players = 26;
+    constexpr static auto max_players = 26;
 };

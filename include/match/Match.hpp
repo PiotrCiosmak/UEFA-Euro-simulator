@@ -28,7 +28,7 @@ private:
     void simulateRedCard();
     void simulateInjury();
     void simulateSubstitution();
-    void selectGoalScorer(int team_index) const;
+    [[nodiscard]] auto selectGoalScorer(int team_index) const -> std::shared_ptr<Player>;
     void selectWhoAssisted(int team_index, const std::shared_ptr<Player> &goal_scorer) const;
     void selectWhoGetsYellowCard(int team_index) const;
     void selectWhoGetsRedCard(int team_index) const;

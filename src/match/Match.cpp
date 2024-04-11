@@ -1,7 +1,7 @@
 #include "match/Match.hpp"
 
 #include <cstdlib>
-#include <bits/random.h>
+#include <random>
 
 Match::Match(std::string new_date, const MatchStage new_stage,
              const std::array<std::shared_ptr<NationalTeam>, 2> &new_national_team) : date{
@@ -161,8 +161,8 @@ void Match::simulateGoal()
         {
             national_teams.at(0)->getKnockoutStageStatistics()->addGoalScored();
         }
-        selectGoalScorer(0);
-        selectWhoAssisted(0);
+        const auto goal_scorer = selectGoalScorer(0);
+        selectWhoAssisted(0, goal_scorer);
     }
     else if (random_number > away_probability)
     {
@@ -175,12 +175,12 @@ void Match::simulateGoal()
         {
             national_teams.at(1)->getKnockoutStageStatistics()->addGoalScored();
         }
-        selectGoalScorer(1);
-        selectWhoAssisted(1);
+        const auto goal_scorer = selectGoalScorer(1);
+        selectWhoAssisted(1, goal_scorer);
     }
 }
 
-void Match::selectGoalScorer(const int team_index) const
+auto Match::selectGoalScorer(const int team_index) const -> std::shared_ptr<Player>
 {
     const auto players = squads.at(team_index).getAllFieldPlayers();
     const auto random_number = rand() % 100;
@@ -195,9 +195,11 @@ void Match::selectGoalScorer(const int team_index) const
             }
         }
         const auto atacker_index = rand() % atackers.size();
-        atackers.at(atacker_index)->getStatistics().assists += 1;
+        auto atacker = atackers.at(atacker_index);
+        atacker->getStatistics().assists += 1;
+        return atacker;
     }
-    else if (random_number >= 30 && random_number < 80)
+    if (random_number < 90)
     {
         std::vector<std::shared_ptr<Player>> midfielders;
         for (const auto &player: players)
@@ -208,21 +210,22 @@ void Match::selectGoalScorer(const int team_index) const
             }
         }
         const auto midfielder_index = rand() % midfielders.size();
-        midfielders.at(midfielder_index)->getStatistics().assists += 1;
+        auto midfielder = midfielders.at(midfielder_index);
+        midfielder->getStatistics().assists += 1;
+        return midfielder;
     }
-    else
+    std::vector<std::shared_ptr<Player>> defenders;
+    for (const auto &player: players)
     {
-        std::vector<std::shared_ptr<Player>> defenders;
-        for (const auto &player: players)
+        if (player->getPosition() == Position::Defender)
         {
-            if (player->getPosition() == Position::Defender)
-            {
-                defenders.push_back(player);
-            }
+            defenders.push_back(player);
         }
-        const auto defender_index = rand() % defenders.size();
-        defenders.at(defender_index)->getStatistics().assists += 1;
     }
+    const auto defender_index = rand() % defenders.size();
+    auto defender = defenders.at(defender_index);
+    defender->getStatistics().assists += 1;
+    return defender;
 }
 
 void Match::selectWhoAssisted(const int team_index, const std::shared_ptr<Player> &goal_scorer) const
