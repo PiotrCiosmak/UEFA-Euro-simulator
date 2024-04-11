@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 
 Squad::Squad(const std::vector<std::shared_ptr<Player>> &new_players) : players{new_players}
 {
@@ -198,16 +199,49 @@ auto Squad::isSquadSet() const -> bool
 
 auto Squad::getTargetNumberOfPlayersByPosition(const Position position) const -> int
 {
+    std::vector<int> numbers_from_formation;
+    std::istringstream ss{formation};
+    std::string number_of_players_on_position;
+
+    while (std::getline(ss, number_of_players_on_position, '-'))
+    {
+        size_t pos = number_of_players_on_position.find('(');
+        if (pos != std::string::npos)
+        {
+            number_of_players_on_position = number_of_players_on_position.substr(0, pos);
+        }
+        numbers_from_formation.push_back(std::stoi(number_of_players_on_position));
+    }
+
+    const auto size_of_numbers_from_formation = numbers_from_formation.size();
+
+
     switch (position)
     {
         case Position::Goalkeeper:
             return 1;
         case Position::Defender:
-            return std::stoi(formation.substr(0, 1));
+            return numbers_from_formation.at(0);
         case Position::Midfielder:
-            return std::stoi(formation.substr(2, 1));
+            if (size_of_numbers_from_formation == 3)
+            {
+                return numbers_from_formation.at(1);
+            }
+            if (size_of_numbers_from_formation == 4)
+            {
+                return numbers_from_formation.at(1) + numbers_from_formation.at(2);
+            }
+            return numbers_from_formation.at(1) + numbers_from_formation.at(2) + numbers_from_formation.at(3);
         case Position::Attacker:
-            return std::stoi(formation.substr(4, 1));
+            if (numbers_from_formation.size() == 3)
+            {
+                return numbers_from_formation.at(2);
+            }
+            if (size_of_numbers_from_formation == 4)
+            {
+                return numbers_from_formation.at(3);
+            }
+            return numbers_from_formation.at(4);
         default:
             return 0;
     }
