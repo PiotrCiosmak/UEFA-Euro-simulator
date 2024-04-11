@@ -11,7 +11,7 @@ Player::Player(std::string new_first_name, std::string new_last_name, const int 
 
 auto Player::getName() const -> std::string
 {
-    return first_name + last_name;
+    return first_name + " " + last_name;
 }
 
 auto Player::getOverall() const -> int
@@ -19,7 +19,7 @@ auto Player::getOverall() const -> int
     return overall;
 }
 
-auto Player::getStatistics() -> PlayerStatistics&
+auto Player::getStatistics() -> PlayerStatistics &
 {
     return player_statistics;
 }
