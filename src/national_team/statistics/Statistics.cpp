@@ -5,7 +5,7 @@ Statistics::Statistics(): matches_played{0}, wins{0}, draws{0}, loses{0}, goals_
 {
 }
 
-void Statistics::addMatche()
+void Statistics::addMatch()
 {
     matches_played++;
 }

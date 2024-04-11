@@ -4,7 +4,7 @@ class Statistics
 {
 public:
     Statistics();
-    void addMatche();
+    void addMatch();
     void addWin();
     void addDraw();
     void addLose();
