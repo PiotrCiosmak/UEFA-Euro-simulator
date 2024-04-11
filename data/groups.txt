@@ -3,4 +3,4 @@ B spain italy croatia albania
 C slovenia denmark serbia england
 D poland netherlands austria france
 E belgium slovakia romania ukraine
-D turkey georgia portugal czechrepublic
+F turkey georgia portugal czechrepublic

@@ -13,7 +13,7 @@ scotland 39
 netherlands 7
 italy 9
 croatia 10
-czech republic 36
+czechrepublic 36
 austria 25
 serbia 33
 slovenia 57
