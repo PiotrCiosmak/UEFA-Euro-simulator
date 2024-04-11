@@ -33,5 +33,5 @@ private:
     std::vector<std::shared_ptr<Player>> midfielders;
     std::vector<std::shared_ptr<Player>> attackers;
     std::vector<std::shared_ptr<Player>> substitutes;
-    constexpr static auto target_substitutes_number = 5;
+    constexpr auto target_substitutes_number = 5;
 };

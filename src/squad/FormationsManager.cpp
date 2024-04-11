@@ -11,7 +11,7 @@ FormationsManager *FormationsManager::instance()
 
 auto FormationsManager::showAll() const -> size_t
 {
-    constexpr static auto formation_number = formations.size();
+    constexpr auto formation_number = formations.size();
     for (int i = 0; i < formation_number; ++i)
     {
         std::cout << i + 1 << ". " << formations.at(i) << std::endl;

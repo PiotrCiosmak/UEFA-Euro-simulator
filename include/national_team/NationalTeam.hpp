@@ -30,5 +30,5 @@ private:
     std::shared_ptr<Squad> squad;
     //TODO podczas awansu z grupy dodajemy pusty obiekt knockoutStastics
     std::vector<std::shared_ptr<Statistics>> statistics;
-    constexpr static auto max_players = 26;
+    constexpr auto max_players = 26;
 };
