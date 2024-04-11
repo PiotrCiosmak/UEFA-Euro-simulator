@@ -100,8 +100,7 @@ void Euro::start()
 
 void Euro::showMenu()
 {
-    std::cout << "MENU" << std::endl;
-    std::cout << "0. Exit" << std::endl;
+    std::cout << "\nMENU" << std::endl;
     std::cout << "1. Simulate next match" << std::endl;
     std::cout << "2. Show next match" << std::endl;
     std::cout << "3. Show group stage schedule" << std::endl;
@@ -110,6 +109,7 @@ void Euro::showMenu()
     std::cout << "6. Show finished matches" << std::endl;
     std::cout << "7. Show players statistisc" << std::endl;
     std::cout << "8. Show winner" << std::endl;
+    std::cout << "0. Exit" << std::endl;
     std::cout << "Select option: ";
 }
 
