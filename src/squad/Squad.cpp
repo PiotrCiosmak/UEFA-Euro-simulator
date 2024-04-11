@@ -13,7 +13,6 @@ void Squad::setSquad()
 {
     chooseFormation();
     choosePlayersByPosition(Position::Goalkeeper, goalkeeper);
-    choosePlayersByPosition(Position::Defender, defenders);
     choosePlayersByPosition(Position::Midfielder, midfielders);
     choosePlayersByPosition(Position::Attacker, attackers);
     chooseSubstitutes();
@@ -28,26 +27,18 @@ void Squad::chooseFormation()
     const auto formation_number = formation_manager->showAll();
     do
     {
-        char selected_formation;
+        std::string selected_formation;
         std::cout << "Select formation: ";
-        std::cin >> selected_formation;
-
-        if (std::isdigit(selected_formation))
+        std::getline(std::cin, selected_formation);
+        const auto selected_formation_index = stoi(selected_formation) - 1;
+        if (selected_formation_index >= 0 && selected_formation_index < formation_number)
         {
-            const auto formation_index = selected_formation - '0';
-            if (formation_index >= 1 && formation_index <= formation_number)
-            {
-                valid_input = true;
-                formation = formation_manager->getFormation(selected_formation - 1);
-            }
-            else
-            {
-                std::cout << "Invalid formation index. Please enter a valid number." << std::endl;
-            }
+            valid_input = true;
+            formation = formation_manager->getFormation(selected_formation_index);
         }
         else
         {
-            std::cout << "Invalid input. Please enter a number." << std::endl;
+            std::cout << "Invalid formation index. Please enter a valid number." << std::endl;
         }
     } while (!valid_input);
 }
@@ -59,20 +50,25 @@ void Squad::choosePlayersByPosition(const Position position,
     auto selected_players_number = 0;
     const auto selected_position = position_utils::positionToString(position);
 
-    std::cout << "List of " << selected_position << "s\n"; //
+    std::cout << "List of " << selected_position << "s\n";
     printAllPlayersByPosition(position);
     do
     {
         std::string player_name;
-        std::cout << "Select the" << selected_players_number + 1 << '/' << target_players_number << ' ' <<
+        std::cout << "Select the " << selected_players_number + 1 << '/' << target_players_number << ' ' <<
                 selected_position << " (enter full name): ";
-        std::cin >> player_name;
+        std::getline(std::cin, player_name);
 
         auto it = std::ranges::find_if(players.begin(), players.end(),
                                        [&player_name](const std::shared_ptr<Player> &player)
                                        {
                                            return player->getName() == player_name;
                                        });
+        if (it->get() == nullptr)
+        {
+            std::cerr << "Invalid choice. Try again." << std::endl;
+            continue;
+        }
         if (it != players.end())
         {
             players_by_position.push_back(*it);
@@ -112,15 +108,20 @@ void Squad::chooseSubstitutes()
     do
     {
         std::string player_name;
-        std::cout << "Select the" << selected_substitutes_number + 1 << '/' << target_substitutes_number <<
-                " attacker (enter full name): ";
-        std::cin >> player_name;
+        std::cout << "Select the " << selected_substitutes_number + 1 << '/' << target_substitutes_number <<
+                " substitutes (enter full name): ";
+        std::getline(std::cin, player_name);
 
         auto it = std::ranges::find_if(players.begin(), players.end(),
                                        [&player_name](const std::shared_ptr<Player> &player)
                                        {
                                            return player->getName() == player_name;
                                        });
+        if (it->get() == nullptr)
+        {
+            std::cerr << "Invalid choice. Try again." << std::endl;
+            continue;
+        }
         if (it != players.end())
         {
             substitutes.push_back(*it);
