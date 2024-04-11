@@ -15,7 +15,7 @@ public:
     [[nodiscard]] auto getPositionInRanking() const -> int;
     [[nodiscard]] auto getSquad() const -> std::shared_ptr<Squad>;
     void showStatistics(MatchStage stage) const;
-    [[nodiscard]] auto getGroupStageStatistics() const -> std::shared_ptr<GroupStatistics>;
+    [[nodiscard]] auto getGroupStageStatistics() const ->std::shared_ptr<GroupStatistics>;
     [[nodiscard]] auto getKnockoutStageStatistics() const -> std::shared_ptr<KnockoutStageStatistics>;
 
 private:
@@ -28,7 +28,7 @@ private:
     std::vector<Player> players;
     const int position_in_ranking;
     std::shared_ptr<Squad> squad;
-    //TODO podczas awansu z grupy dodajemy pusty obiekt knockoutStastics
+    //TODO after promotion add new KnockoutStatistics object to vector statistics
     std::vector<std::shared_ptr<Statistics>> statistics;
     constexpr static auto max_players = 26;
 };

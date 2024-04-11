@@ -18,7 +18,7 @@ NationalTeam::NationalTeam(const Nationality new_country_name, const int new_pos
 
 void NationalTeam::loadPlayers()
 {
-    const auto file_path = "data/players/" + nationality_utils::nationalityToString(county_name, true) + ".txt";
+    const auto file_path = "../data/players/" + nationality_utils::nationalityToString(county_name, true) + ".txt";
     std::ifstream file{file_path};
     if (!file.is_open())
     {
@@ -50,7 +50,7 @@ auto NationalTeam::getSquadPlayers() const -> std::vector<std::shared_ptr<Player
     squad_players.reserve(players.size());
     for (const auto &player: players)
     {
-        squad_players.push_back(std::make_shared<Player>(player)); // Tworzenie shared_ptr dla każdego elementu
+        squad_players.push_back(std::make_shared<Player>(player));
     }
     return squad_players;
 }
@@ -122,15 +122,19 @@ void NationalTeam::showKnockoutStageStatistics() const
 
 auto NationalTeam::getGroupStageStatistics() const -> std::shared_ptr<GroupStatistics>
 {
-    return std::dynamic_pointer_cast<GroupStatistics>(statistics.at(0));
+    auto ptr = std::dynamic_pointer_cast<GroupStatistics>(statistics.at(0));
+    if (ptr)
+    {
+        return ptr;
+    }
 }
 
 auto NationalTeam::getKnockoutStageStatistics() const -> std::shared_ptr<KnockoutStageStatistics>
 {
-    const auto knockout_statitsics = std::dynamic_pointer_cast<KnockoutStageStatistics>(statistics.at(1));
-    if (knockout_statitsics)
+    auto ptr = std::dynamic_pointer_cast<KnockoutStageStatistics>(statistics.at(0));
+    if (ptr)
     {
-        return knockout_statitsics;
+        return ptr;
     }
     std::cerr << "Error: Knockout stage didn't stared." << std::endl;
     exit(1);
