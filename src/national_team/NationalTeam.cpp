@@ -18,7 +18,7 @@ NationalTeam::NationalTeam(const Nationality new_country_name, const int new_pos
 
 void NationalTeam::loadPlayers()
 {
-    const auto file_path = "players/" + nationality_utils::nationalityToString(county_name) + ".csv";
+    const auto file_path = "data/players/" + nationality_utils::nationalityToString(county_name, true) + ".txt";
     std::ifstream file{file_path};
     if (!file.is_open())
     {

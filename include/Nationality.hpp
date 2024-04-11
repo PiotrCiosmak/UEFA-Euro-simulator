@@ -35,61 +35,96 @@ enum class Nationality
 
 namespace nationality_utils
 {
-    inline auto nationalityToString(const Nationality nationality) -> std::string
+    inline auto nationalityToString(const Nationality nationality, bool tolower = false) -> std::string
     {
+        std::string country_name;
         switch (nationality)
         {
             case Nationality::Germany:
-                return "Germany";
+                country_name = "Germany";
+                break;
             case Nationality::Spain:
-                return "Spain";
+                country_name = "Spain";
+                break;
             case Nationality::France:
-                return "France";
+                country_name = "France";
+                break;
             case Nationality::England:
-                return "England";
+                country_name = "England";
+                break;
             case Nationality::Turkey:
-                return "Turkey";
+                country_name = "Turkey";
+                break;
             case Nationality::Albania:
-                return "Albania";
+                country_name = "Albania";
+                break;
             case Nationality::Belgium:
-                return "Belgium";
+                country_name = "Belgium";
+                break;
             case Nationality::Hungary:
-                return "Hungary";
+                country_name = "Hungary";
+                break;
             case Nationality::Denmark:
-                return "Denmark";
+                country_name = "Denmark";
+                break;
             case Nationality::Romania:
-                return "Romania";
+                country_name = "Romania";
+                break;
             case Nationality::Portugal:
-                return "Portugal";
+                country_name = "Portugal";
+                break;
             case Nationality::Scotland:
-                return "Scotland";
+                country_name = "Scotland";
+                break;
             case Nationality::Netherlands:
-                return "Netherlands";
+                country_name = "Netherlands";
+                break;
             case Nationality::Italy:
-                return "Italy";
+                country_name = "Italy";
+                break;
             case Nationality::Croatia:
-                return "Croatia";
+                country_name = "Croatia";
+                break;
             case Nationality::CzechRepublic:
-                return "Czech Republic";
+                country_name = "Czech Republic";
+                break;
             case Nationality::Austria:
-                return "Austria";
+                country_name = "Austria";
+                break;
             case Nationality::Serbia:
-                return "Serbia";
+                country_name = "Serbia";
+                break;
             case Nationality::Slovenia:
-                return "Slovenia";
+                country_name = "Slovenia";
+                break;
             case Nationality::Switzerland:
-                return "Switzerland";
+                country_name = "Switzerland";
+                break;
             case Nationality::Slovakia:
-                return "Slovakia";
+                country_name = "Slovakia";
+                break;
             case Nationality::Poland:
-                return "Poland";
+                country_name = "Poland";
+                break;
             case Nationality::Ukraine:
-                return "Ukraine";
+                country_name = "Ukraine";
+                break;
             case Nationality::Georgia:
-                return "Georgia";
+                country_name = "Georgia";
+                break;
+            default:
+                std::cerr << "Error: Invalid nationality." << std::endl;
+                exit(1);
         }
-        std::cerr << "Error: Invalid nationality." << std::endl;
-        exit(1);
+        if (tolower)
+        {
+            if (country_name == "Czech Republic")
+            {
+                country_name = "Czech_Republic";
+            }
+            text_utils::stringToLower(country_name);
+        }
+        return country_name;
     }
 
     inline auto stringToNationality(std::string nationality) -> Nationality
