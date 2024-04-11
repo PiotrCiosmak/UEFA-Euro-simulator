@@ -162,6 +162,7 @@ void Match::simulateGoal()
             national_teams.at(0)->getKnockoutStageStatistics()->addGoalScored();
         }
         selectGoalScorer(0);
+        selectWhoAssisted(0);
     }
     else if (random_number > away_probability)
     {
@@ -174,7 +175,8 @@ void Match::simulateGoal()
         {
             national_teams.at(1)->getKnockoutStageStatistics()->addGoalScored();
         }
-        selectGoalScorer(0);
+        selectGoalScorer(1);
+        selectWhoAssisted(1);
     }
 }
 
@@ -182,10 +184,65 @@ void Match::selectGoalScorer(const int team_index) const
 {
     const auto players = squads.at(team_index).getAllFieldPlayers();
     const auto random_number = rand() % 100;
-    if (random_number < 70)
+    if (random_number < 30)
     {
         std::vector<std::shared_ptr<Player>> atackers;
         for (const auto &player: players)
+        {
+            if (player->getPosition() == Position::Attacker)
+            {
+                atackers.push_back(player);
+            }
+        }
+        const auto atacker_index = rand() % atackers.size();
+        atackers.at(atacker_index)->getStatistics().assists += 1;
+    }
+    else if (random_number >= 30 && random_number < 80)
+    {
+        std::vector<std::shared_ptr<Player>> midfielders;
+        for (const auto &player: players)
+        {
+            if (player->getPosition() == Position::Midfielder)
+            {
+                midfielders.push_back(player);
+            }
+        }
+        const auto midfielder_index = rand() % midfielders.size();
+        midfielders.at(midfielder_index)->getStatistics().assists += 1;
+    }
+    else
+    {
+        std::vector<std::shared_ptr<Player>> defenders;
+        for (const auto &player: players)
+        {
+            if (player->getPosition() == Position::Defender)
+            {
+                defenders.push_back(player);
+            }
+        }
+        const auto defender_index = rand() % defenders.size();
+        defenders.at(defender_index)->getStatistics().assists += 1;
+    }
+}
+
+void Match::selectWhoAssisted(const int team_index, const std::shared_ptr<Player> &goal_scorer) const
+{
+    const auto players = squads.at(team_index).getAllFieldPlayers();
+    std::array<std::shared_ptr<Player>, 9> filtered_players{};
+    for (int i = 0; i < players.size(); ++i)
+    {
+        const auto candidate = players.at(i);
+        if (candidate != goal_scorer)
+        {
+            filtered_players.at(i) = candidate;
+        }
+    }
+
+    const auto random_number = rand() % 100;
+    if (random_number < 70)
+    {
+        std::vector<std::shared_ptr<Player>> atackers;
+        for (const auto &player: filtered_players)
         {
             if (player->getPosition() == Position::Attacker)
             {
@@ -198,7 +255,7 @@ void Match::selectGoalScorer(const int team_index) const
     else if (random_number >= 70 && random_number < 90)
     {
         std::vector<std::shared_ptr<Player>> midfielders;
-        for (const auto &player: players)
+        for (const auto &player: filtered_players)
         {
             if (player->getPosition() == Position::Midfielder)
             {
@@ -211,7 +268,7 @@ void Match::selectGoalScorer(const int team_index) const
     else
     {
         std::vector<std::shared_ptr<Player>> defenders;
-        for (const auto &player: players)
+        for (const auto &player: filtered_players)
         {
             if (player->getPosition() == Position::Defender)
             {
@@ -559,6 +616,14 @@ void Match::showStatistics() const
 
 void Match::showInformation() const
 {
+    if (stage == MatchStage::GroupStage)
+    {
+        std::cout << "Grop stage: ";
+    }
+    else
+    {
+        std::cout << "Knockout stage: ";
+    }
     std::cout << nationality_utils::nationalityToString(national_teams.at(0)->getCountryName()) << " vs " <<
             nationality_utils::nationalityToString(national_teams.at(1)->getCountryName()) << ", " << date << std::endl;
 }
