@@ -12,8 +12,28 @@ Squad::Squad(const std::vector<std::shared_ptr<Player>> &new_players) : players{
 
 void Squad::setSquad()
 {
+    /*
+    DLA TESTÓW PODCZAS PRZEZENTACJI PROJEKTU
+    formation = "4-5-1";
+    goalkeeper.push_back(players.at(0));
+    defenders.push_back(players.at(4));
+    defenders.push_back(players.at(5));
+    defenders.push_back(players.at(6));
+    defenders.push_back(players.at(7));
+    midfielders.push_back(players.at(15));
+    midfielders.push_back(players.at(16));
+    midfielders.push_back(players.at(17));
+    midfielders.push_back(players.at(18));
+    midfielders.push_back(players.at(19));
+    attackers.push_back(players.at(22));
+    substitutes.push_back(players.at(8));
+    substitutes.push_back(players.at(9));
+    substitutes.push_back(players.at(10));
+    substitutes.push_back(players.at(11));
+    substitutes.push_back(players.at(12));*/
     chooseFormation();
     choosePlayersByPosition(Position::Goalkeeper, goalkeeper);
+    choosePlayersByPosition(Position::Defender, defenders);
     choosePlayersByPosition(Position::Midfielder, midfielders);
     choosePlayersByPosition(Position::Attacker, attackers);
     chooseSubstitutes();
