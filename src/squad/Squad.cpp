@@ -264,6 +264,6 @@ auto Squad::getAllPlayers() const -> std::array<std::shared_ptr<Player>, 11>
         players.at(counter) = player;
         counter++;
     }
-    players.fill(goalkeeper.at(0));
+    players.at(counter) = goalkeeper.at(0);
     return players;
 }
