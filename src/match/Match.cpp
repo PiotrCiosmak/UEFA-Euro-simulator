@@ -51,17 +51,13 @@ void Match::simulate()
     showStage();
     if (stage == MatchStage::GroupStage)
     {
-        for (const auto &national_team: national_teams)
-        {
-            national_team->getGroupStageStatistics()->addMatche();
-        }
+        national_teams.at(0)->getGroupStageStatistics()->addMatch();
+        national_teams.at(1)->getGroupStageStatistics()->addMatch();
     }
     else
     {
-        for (const auto &national_team: national_teams)
-        {
-            national_team->getKnockoutStageStatistics()->addMatche();
-        }
+        national_teams.at(0)->getKnockoutStageStatistics()->addMatch();
+        national_teams.at(1)->getKnockoutStageStatistics()->addMatch();
     }
     startSimulation(90);
 
@@ -86,19 +82,18 @@ void Match::simulate()
     saveCleanSheets();
     finished = true;
     showResult();
-    char answer;
+    std::string answer;
     std::cout << "Display match details? (y/n): ";
-    std::cin >> answer;
+    std::getline(std::cin, answer);
     auto valid_input = false;
-
     do
     {
-        if (std::tolower(answer) == 'y')
+        if (std::tolower(answer.at(0)) == 'y')
         {
             valid_input = true;
             showStatistics();
         }
-        else if (std::tolower(answer) == 'n')
+        else if (std::tolower(answer.at(0)) == 'n')
         {
             valid_input = true;
         }
@@ -162,12 +157,11 @@ void Match::simulateGoal()
             national_teams.at(0)->getKnockoutStageStatistics()->addGoalScored();
         }
         const auto goal_scorer = selectGoalScorer(0);
-        selectWhoAssisted(0, goal_scorer);
     }
     else if (random_number > away_probability)
     {
         statistics.awayScoreGoal();
-        if (stage == MatchStage::KnockoutStage)
+        if (stage == MatchStage::GroupStage)
         {
             national_teams.at(1)->getGroupStageStatistics()->addGoalScored();
         }
@@ -176,7 +170,6 @@ void Match::simulateGoal()
             national_teams.at(1)->getKnockoutStageStatistics()->addGoalScored();
         }
         const auto goal_scorer = selectGoalScorer(1);
-        selectWhoAssisted(1, goal_scorer);
     }
 }
 
@@ -196,7 +189,7 @@ auto Match::selectGoalScorer(const int team_index) const -> std::shared_ptr<Play
         }
         const auto atacker_index = rand() % atackers.size();
         auto atacker = atackers.at(atacker_index);
-        atacker->getStatistics().assists += 1;
+        atacker->getStatistics().goals += 1;
         return atacker;
     }
     if (random_number < 90)
@@ -211,7 +204,7 @@ auto Match::selectGoalScorer(const int team_index) const -> std::shared_ptr<Play
         }
         const auto midfielder_index = rand() % midfielders.size();
         auto midfielder = midfielders.at(midfielder_index);
-        midfielder->getStatistics().assists += 1;
+        midfielder->getStatistics().goals += 1;
         return midfielder;
     }
     std::vector<std::shared_ptr<Player>> defenders;
@@ -224,63 +217,8 @@ auto Match::selectGoalScorer(const int team_index) const -> std::shared_ptr<Play
     }
     const auto defender_index = rand() % defenders.size();
     auto defender = defenders.at(defender_index);
-    defender->getStatistics().assists += 1;
+    defender->getStatistics().goals += 1;
     return defender;
-}
-
-void Match::selectWhoAssisted(const int team_index, const std::shared_ptr<Player> &goal_scorer) const
-{
-    const auto players = squads.at(team_index).getAllFieldPlayers();
-    std::array<std::shared_ptr<Player>, 9> filtered_players{};
-    for (int i = 0; i < players.size(); ++i)
-    {
-        const auto candidate = players.at(i);
-        if (candidate != goal_scorer)
-        {
-            filtered_players.at(i) = candidate;
-        }
-    }
-
-    const auto random_number = rand() % 100;
-    if (random_number < 70)
-    {
-        std::vector<std::shared_ptr<Player>> atackers;
-        for (const auto &player: filtered_players)
-        {
-            if (player->getPosition() == Position::Attacker)
-            {
-                atackers.push_back(player);
-            }
-        }
-        const auto atacker_index = rand() % atackers.size();
-        atackers.at(atacker_index)->getStatistics().goals += 1;
-    }
-    else if (random_number >= 70 && random_number < 90)
-    {
-        std::vector<std::shared_ptr<Player>> midfielders;
-        for (const auto &player: filtered_players)
-        {
-            if (player->getPosition() == Position::Midfielder)
-            {
-                midfielders.push_back(player);
-            }
-        }
-        const auto midfielder_index = rand() % midfielders.size();
-        midfielders.at(midfielder_index)->getStatistics().goals += 1;
-    }
-    else
-    {
-        std::vector<std::shared_ptr<Player>> defenders;
-        for (const auto &player: filtered_players)
-        {
-            if (player->getPosition() == Position::Defender)
-            {
-                defenders.push_back(player);
-            }
-        }
-        const auto defender_index = rand() % defenders.size();
-        defenders.at(defender_index)->getStatistics().goals += 1;
-    }
 }
 
 void Match::simulateYellowCard()
@@ -304,7 +242,7 @@ void Match::simulateYellowCard()
     else if (random_number > away_probability)
     {
         statistics.awayGetYellowCard();
-        if (stage == MatchStage::KnockoutStage)
+        if (stage == MatchStage::GroupStage)
         {
             national_teams.at(1)->getGroupStageStatistics()->addYellowCard();
         }
@@ -384,7 +322,7 @@ void Match::simulateRedCard()
     {
         statistics.awayGetRedCard();
         overall_addition.second -= 1;
-        if (stage == MatchStage::KnockoutStage)
+        if (stage == MatchStage::GroupStage)
         {
             national_teams.at(1)->getGroupStageStatistics()->addRedCard();
         }
