@@ -11,7 +11,7 @@ FormationsManager *FormationsManager::instance()
 
 auto FormationsManager::showAll() const -> size_t
 {
-    constexpr auto formation_number = formations.size();
+    const auto formation_number = formations.size();
     for (int i = 0; i < formation_number; ++i)
     {
         std::cout << i + 1 << ". " << formations.at(i) << std::endl;
@@ -24,10 +24,6 @@ auto FormationsManager::getFormation(size_t index) -> std::string
     return formations.at(index);
 }
 
-FormationsManager::~FormationsManager()
-{
-    delete
-}
 
 FormationsManager::FormationsManager()
 {

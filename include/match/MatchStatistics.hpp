@@ -23,5 +23,5 @@ private:
     std::array<int, 2> yellow_cards;
     std::array<int, 2> red_cards;
     std::array<int, 2> changes_available;
-    constexpr int max_changes = 5;
+    constexpr static int max_changes = 5;
 };

@@ -11,7 +11,6 @@ public:
     static FormationsManager *instance();
     [[nodiscard]] auto showAll() const -> size_t;
     [[nodiscard]] auto getFormation(size_t index) -> std::string;
-    ~FormationsManager();
 private:
     FormationsManager();
 

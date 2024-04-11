@@ -17,5 +17,5 @@ private:
 
     std::string name;
     std::array<std::shared_ptr<NationalTeam>, 4> national_teams;
-    constexpr static auto max_teams = 4;
+    constexpr auto max_teams = 4;
 };
