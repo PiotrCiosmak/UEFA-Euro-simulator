@@ -2,7 +2,7 @@ Bart Verbruggen 75 goalkeeper
 Mark Flekken 82 goalkeeper
 Marco Bizot 76 goalkeeper
 Matthijs de-Ligt 92 defender
-Nathan Ake defender
+Nathan Ake 82 defender
 Virgil van-Dijk 82 defender
 Daley Blind 77 defender
 Lutsharel Geertruida 82 defender

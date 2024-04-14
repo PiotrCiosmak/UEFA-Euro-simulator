@@ -5,7 +5,7 @@ Thomas Kaminski 73 goalkeeper
 Arthur Theate 82 defender
 Wout Faes 76 defender
 Zeno Debast 71 defender
-Koni De Winter 66 defender
+Koni De-Winter 66 defender
 Jan Vertonghen 85 defender
 Timothy Castagne 77 defender
 Thomas Meunier 76 defender
@@ -15,7 +15,7 @@ Youri Tielemans 90 midfielder
 Orel Mangala 76 midfielder
 Aster Vranckx 73 midfielder
 Olivier Deman 70 midfielder
-Charles De Ketelaere 85 midfielder
+Charles De-Ketelaere 85 midfielder
 Jérémy Doku 89 attacker
 Leandro Trossard 81 attacker
 Johan Bakayoko 75 attacker
