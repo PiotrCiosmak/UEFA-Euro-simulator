@@ -102,7 +102,6 @@ void NationalTeam::showGroupStageStatistics() const
     std::cout << "Goals conceded: " << group_statistics->getGoalsConceded() << std::endl;
     std::cout << "Yellow cards: " << group_statistics->getYellowCards() << std::endl;
     std::cout << "Red cards: " << group_statistics->getRedCards() << std::endl;
-    std::cout << "Got promoted: " << promotion_info << std::endl;
 }
 
 void NationalTeam::showKnockoutStageStatistics() const
